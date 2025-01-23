@@ -48,7 +48,7 @@ public class PlayerRepositoryDB implements IPlayerRepository {
 //        session.getTransaction().commit();
 //        session.close();
 
-        Query<Player> query = session.createQuery("from rpg.player", Player.class);
+        Query<Player> query = session.createQuery("from Player", Player.class);
         query.setFirstResult(pageNumber * pageSize);
         query.setMaxResults(pageSize);
         List<Player> players = query.getResultList();
@@ -61,7 +61,7 @@ public class PlayerRepositoryDB implements IPlayerRepository {
     public int getAllCount() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Query<Long> query = session.createQuery("select count(*) from rpg.player", Long.class);
+        Query<Long> query = session.createQuery("select count(*) from Player", Long.class);
         Long result =  query.getSingleResult();
         session.getTransaction().commit();
         session.close();
